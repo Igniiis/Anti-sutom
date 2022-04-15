@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "an-array-of-french-words": "^2.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3"
+  }
+}
