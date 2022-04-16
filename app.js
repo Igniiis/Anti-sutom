@@ -18,13 +18,8 @@ app.set('view-engine','ejs');
 //on prévient l'appli que l'on prend ces formes et qu'on veut récupérer les infos qui y sont
 app.use(express.urlencoded({extended:false}));
 
-let i = 0;
 //route de base
-app.get('/', function(request,response) {
-    response.send('page reset test ' + i);
-    i++;
-})
-
+app.use('/',require('./routes/index'));
 
 
 //route pour tester les input
@@ -40,14 +35,16 @@ app.post('/decouverte',function(request,response){
 
 
 //partie où les personnes sont redirectionner après avoir cliquer
-app.get('/redirectionner',function(request,response){
-    response.render('redirect.ejs',{nom:Lnom,prenom:Lprenom});
-});
+app.use('/redirectionner',require('./routes/redirection'));
+
+// app.get('/redirectionner',function(request,response){
+//     response.render('redirect.ejs',{nom:Lnom,prenom:Lprenom});
+// });
 
 
-app.post('/redirectionner',function(request,response){
-    response.redirect('/decouverte');
-})
+// app.post('/redirectionner',function(request,response){
+//     response.redirect('/decouverte');
+// })
 
 
 //route options
