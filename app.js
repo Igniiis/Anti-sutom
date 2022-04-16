@@ -21,15 +21,15 @@ app.use(express.urlencoded({extended:false}));
 let i = 0;
 //route de base
 app.get('/', function(request,response) {
-    
-    response.send('page reset test' + i);
+    response.send('page reset test ' + i);
     i++;
 })
 
 
+
 //route pour tester les input
 app.get('/decouverte',function(req,res){
-    res.render('index.ejs', {nom:Lnom,prenom:Lprenom}); //on affiche le .ejs et on set le parametre name
+    res.render('index.ejs', {nom:Lnom,prenom:Lprenom,liste:french}); //on affiche le .ejs et on set le parametre name
 });
 
 app.post('/decouverte',function(request,response){
