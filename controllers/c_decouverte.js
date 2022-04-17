@@ -1,5 +1,11 @@
+//variables de tests
+let Lnom = 'malleret';
+let Lprenom = 'maxence';
+
+const french = require("an-array-of-french-words"); // npm install an-array-of-french-words
+
 exports.affichage = function (request,response) {
-    response.render('index.ejs', {nom:Lnom,prenom:Lprenom,liste:french}); //on affiche le .ejs et on set le parametre name)
+    response.render('formulaire.ejs', {nom:Lnom,prenom:Lprenom,liste:french}); //on affiche le .ejs et on set le parametre name)
 }
 
 exports.valider = function (request, response) {

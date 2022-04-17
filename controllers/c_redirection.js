@@ -1,3 +1,8 @@
+//variables de tests
+let Lnom = 'malleret';
+let Lprenom = 'maxence';
+
+
 //route de redirection
 exports.affichage =  function(request,response) {
     response.render('redirect.ejs',{nom:Lnom,prenom:Lprenom});
