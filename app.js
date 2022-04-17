@@ -23,31 +23,14 @@ app.use('/',require('./routes/index'));
 
 
 //route pour tester les input
-app.get('/decouverte',function(req,res){
-    res.render('index.ejs', {nom:Lnom,prenom:Lprenom,liste:french}); //on affiche le .ejs et on set le parametre name
-});
+app.use('/decouverte',require('./routes/decouverte'));
 
-app.post('/decouverte',function(request,response){
-    Lnom = request.body.nom;
-    Lprenom = request.body.prenom;
-    response.redirect('/redirectionner');
-});
 
 
 //partie où les personnes sont redirectionner après avoir cliquer
 app.use('/redirectionner',require('./routes/redirection'));
 
-// app.get('/redirectionner',function(request,response){
-//     response.render('redirect.ejs',{nom:Lnom,prenom:Lprenom});
-// });
-
-
-// app.post('/redirectionner',function(request,response){
-//     response.redirect('/decouverte');
-// })
-
-
-//route options
+//route options // facon de base sans plusieurs fichiers
 app.get('/options', function(request,response) {
     response.send('page option -> bravo tu as compris les routes');
 })

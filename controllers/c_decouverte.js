@@ -1,14 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const c_decouverte = require('../controllers/c_decouverte');
+exports.affichage = function (request,response) {
+    response.render('index.ejs', {nom:Lnom,prenom:Lprenom,liste:french}); //on affiche le .ejs et on set le parametre name)
+}
 
-
-//route de découverte
-router.get('/decouverte', c_decouverte.affichage);
-
-router.post('/decouverte',c_decouverte.valider);
-
-module.exports = router;
+exports.valider = function (request, response) {
+    Lnom = request.body.nom;
+    Lprenom = request.body.prenom;
+    response.redirect('/redirectionner');
+}
 
 
 //code de base (quand dans un seul fichier app)
