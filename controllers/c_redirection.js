@@ -1,11 +1,9 @@
 //variables de tests
-let Lnom = 'malleret';
-let Lprenom = 'maxence';
-
+let user = require('../value/identite');
 
 //route de redirection
 exports.affichage =  function(request,response) {
-    response.render('redirect.ejs',{nom:Lnom,prenom:Lprenom});
+    response.render('redirect.ejs',{nom:user.getNom(),prenom:user.getPrenom()});
 }
 
 exports.retourDecouverte = function(request,response) {
