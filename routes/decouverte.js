@@ -1,12 +1,12 @@
 const express = require("express");
-const router = express.Router();
+const router = express();
 const c_decouverte = require('../controllers/c_decouverte');
 
 
 //route de découverte
 router.get('/decouverte', c_decouverte.affichage);
 
-router.post('/decouverte',c_decouverte.valider);
+router.post('/redirectionner',c_decouverte.valider);
 
 module.exports = router;
 

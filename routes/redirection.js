@@ -5,7 +5,7 @@ const redirection = require('../controllers/c_redirection');
 //route pour redirection
 router.get('/redirectionner', redirection.affichage)
 
-router.post('/redirectionner', redirection.retourDecouverte);
+router.post('/decouverte', redirection.retourDecouverte);
 
 module.exports = router;
 
