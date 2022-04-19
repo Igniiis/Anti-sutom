@@ -3,10 +3,10 @@ const app = express();
 const port = 3000;
 
 //prévenir express que l'on va utiliser des .ejs pour l'affichage
-app.set('view-engine','ejs');
+app.set('view-engine', 'ejs');
 
 //on prévient l'appli que l'on prend ces formes et qu'on veut récupérer les infos qui y sont
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 //route de base
 app.use(require('./routes/index'));
@@ -21,7 +21,7 @@ app.use(require('./routes/redirection'));
 
 
 //route options // facon de base sans plusieurs fichiers
-app.get('/options', function(request,response) {
+app.get('/options', function(request, response) {
     response.send('page option -> bravo tu as compris les routes');
 })
 
