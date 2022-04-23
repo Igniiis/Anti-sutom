@@ -14,12 +14,27 @@
     <form action="" method="post"></form>
 
 
-    <ul>
+    <table>
+        <% for(let i=0;i<longueur;i++){ %>
+            <tr>
+                <% if (i<premiereLettre.length) { %>
+                    <!-- ici mettre code de lorsque la lettre est sur -->
+                    <td><%= premiereLettre[i] %></td>  
+                <% } else { %>
+                    <!-- ici mettre le code de lorsque la lettre est à trouvé -->
+                    <td>___A trouver___</td>                    
+                <% } %> 
 
-    </ul>
+            </tr>
+        <% } %> 
+    </table>
 
     <div id="french">
         <%=france %> 
+    </div>
+
+    <div id="lettrePossible">
+        <%= lettrePossible %> 
     </div>
 </body>
 </html>
