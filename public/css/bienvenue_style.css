@@ -1,0 +1,122 @@
+#caca {
+    padding-left: 45.5%;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    /* centré */
+    color: #BA181B;
+}
+
+p {
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #B1A7A6;
+}
+
+#titre {
+    display: grid;
+    place-items: center;
+    margin-bottom: 3%;
+    font-family: sans-serif;
+}
+
+#texte {
+    display: grid;
+    place-items: center;
+    margin-bottom: 10%;
+    border: 2px solid #660708;
+}
+
+#centrer {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+#longueur_mot {
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #F5F3F4;
+}
+
+#premiereLettre {
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #F5F3F4;
+}
+/** parties paramètres **/
+/** partie résultats **/
+
+#reponse {
+    border: 2px solid #B1A7A6;
+    margin-top: 6%;
+    display: grid;
+    place-items: center;
+}
+
+#mots {
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #A4161A;
+}
+
+#reponse b {
+    font-family: sans-serif;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    font-size: 125%;
+}
+/**boutons**/
+
+.wrapper {
+    display: grid;
+    place-items: center;
+    margin-top: 7%;
+}
+
+a {
+    display: block;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+}
+
+a span {
+    position: relative;
+    z-index: 2;
+}
+
+a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #660708;
+    transition: all .35s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+a:hover:after {
+    width: 100%;
+}
+
+body {
+    background-color: #0B090A;
+}

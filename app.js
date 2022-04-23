@@ -35,7 +35,8 @@ app.use(require('./routes/redirection'));
 
 //route options // facon de base sans plusieurs fichiers
 app.get('/options', function(request, response) {
-    response.send('page option -> bravo tu as compris les routes');
+    response.render('bienvenue.ejs');//,{nom:user.getNom(),prenom:user.getPrenom()});
+    //response.send('page option -> bravo tu as compris les routes');
 })
 
 
