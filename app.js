@@ -42,4 +42,4 @@ app.get('/options', function(request, response) {
 // le serveur tourne sur le port précisé
 app.listen(port);
 
-console.log("bonjour stan...");
+console.log("Serveur lancé sur le port " + port);
