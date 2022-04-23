@@ -26,12 +26,12 @@
 
 
 
-    <form id="my_form" action="/redirectionner" method="post">
+    <form id="my_form" action="/poursuite" method="post">
         <div id="centrer">
 
             <div id="longueur_mot">
-                <label for="nbLettre-choice">la longueur du mot :</label>
-                <input list="nbLettre" id="nbLettre-choice" name="nbLettre-choice" required>
+                <label for="nbLettreChoice">la longueur du mot :</label>
+                <input type="number" list="nbLettre" id="nbLettreChoice" name="nbLettreChoice" required pattern="[1-9]+" required>
 
 
 
@@ -43,8 +43,8 @@
 
 
             <div id="premiereLettre">
-                <label for="firstLettre-choice">les premières lettres :</label>
-                <input list="firstLettre" id="firstLettre-choice" name="firstLettre-choice" required>
+                <label for="firstLettreChoice">les premières lettres :</label>
+                <input type="text" list="firstLettre" id="firstLettreChoice" name="firstLettreChoice" required pattern="[A-Za-z]+" required>
 
                 <datalist id="firstLettre">
                     <option value="a"><option value="b"><option value="c"><option value="d"><option value="e"><option value="f"><option value="g"><option value="h"><option value="i"><option value="j"><option value="k"><option value="l"><option value="m"><option value="n"><option value="o"><option value="p">
@@ -54,18 +54,18 @@
         </div>
     
 
-        <!-- <button type="submit">boutton test</button> -->
+        <button type="submit">boutton test</button>
 
-    <div id="firstSearch">
+    <!-- <div id="firstSearch">
         <div class="wrapper">
 
-            <a onclick="rechercher()" href="" id="bouton">
+            <a onclick="rechercher()" id="bouton">
                 <span >rechercher</span>
             </a>
             
         </div>
 
-    </div>
+    </div> -->
 
 </form>
 

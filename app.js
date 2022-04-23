@@ -22,14 +22,9 @@ app.use(express.static(__dirname + '/public'));
 
 //route de base
 app.use(require('./routes/index'));
-//app.use('/',require('./routes/index'));
 
-//route pour découvrir les input
-app.use(require('./routes/decouverte'));
-//app.use('/decouverte',require('./routes/decouverte'));
-
-//partie où les personnes sont redirectionner après avoir cliquer
-app.use(require('./routes/redirection'));
+//route pour la suite de la recherche
+app.use(require('./routes/poursuite'));
 
 
 

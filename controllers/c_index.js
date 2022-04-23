@@ -1,9 +1,13 @@
+let user = require('../value/mot');
+
 //route de base
 exports.affichage =  function(request,response) {
     response.render('index.ejs');
 }
 
-//probleme vers ici
+
 exports.postFonction = function(request,response) {
-    response.redirect('/redirectionner');
+    user.setFirstLettre(request.body.firstLettreChoice);
+    user.setLongueur(parseInt(request.body.nbLettreChoice));
+    response.redirect('/poursuite');
 }

@@ -6,7 +6,7 @@ const indexJS = require('../controllers/c_index');
 router.get('/', indexJS.affichage)
 
 
-router.post('/redirectionner',indexJS.postFonction);
+router.post('/poursuite',indexJS.postFonction);
 
 
 module.exports = router;
