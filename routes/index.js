@@ -5,8 +5,8 @@ const indexJS = require('../controllers/c_index');
 //route de base
 router.get('/', indexJS.affichage)
 
-//probleme ici
-router.post('/decouverte',indexJS.postFonction);
+
+router.post('/redirectionner',indexJS.postFonction);
 
 
 module.exports = router;
