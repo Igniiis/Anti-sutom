@@ -2,6 +2,7 @@
 let longueur = 0;
 let firstLettre = "";
 
+let mot = "";
 
 let lettrePossible = "abcdefghijklmnopqrstuvwxyz";
 
@@ -22,7 +23,7 @@ module.exports = {
         lettrePossible = str;
     },
     RemoveLettrePossible(str){
-        lettrePossible.replace(str,'');
+        lettrePossible=lettrePossible.replace(str,'');
     },
     
     setLongueur(int){

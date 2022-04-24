@@ -9,5 +9,6 @@ exports.affichage =  function(request,response) {
 exports.postFonction = function(request,response) {
     user.setFirstLettre(request.body.firstLettreChoice);
     user.setLongueur(parseInt(request.body.nbLettreChoice));
+    user.setLettrePossible('abcdefghijklmnopqrstuvwxyz');
     response.redirect('/poursuite');
 }
