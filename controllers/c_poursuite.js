@@ -34,7 +34,7 @@ exports.affichage = function(request,response){
         }
     }
 
-    response.render('poursuite.ejs',{longueur:long,premiereLettre:lettre1,france:french,lettrePossible:user.getLettrePossible()});
+    response.render('poursuite.ejs',{longueur:long,premiereLettre:lettre1,france:french,lettrePossible:user.getLettrePossible(),mot:user.getMot()});
 }
 
 exports.calcul = function(request,response){

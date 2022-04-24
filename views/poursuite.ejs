@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylePoursuite.css">
     <title>anti-sutom</title>
 </head>
 <body>
@@ -17,25 +18,50 @@
     <table>
         <% for(let i=0;i<longueur;i++){ %>
             <tr>
-                <% if (i<premiereLettre.length) { %>
-                    <!-- ici mettre code de lorsque la lettre est sur -->
-                    <td><%= premiereLettre[i] %></td>  
-                <% } else { %>
-                    <!-- ici mettre le code de lorsque la lettre est à trouvé -->
-                    <td>___A trouver___</td>                    
-                <% } %> 
-
+                <td>
+                    <a class="click" onclick="afficher(<%= i %>)">
+                        <span>
+                            <% if (mot[i]!="$") { %>
+                                <!-- ici mettre code de lorsque la lettre est sur -->
+                                <%= mot[i] %>
+                            <% } else { %>
+                                <!-- ici mettre le code de lorsque la lettre est à trouvé -->
+                                ___A trouver___                    
+                            <% } %> 
+                        </span>
+                    </a>
+                </td>
             </tr>
         <% } %> 
     </table>
+
+    <div id="param">
+            <select name="lettreSelected" id="lettreSelectedId">
+                <option value="a"></option>
+            </select>
+        </div>
+    </div>
 
     <div id="french">
         <%=france %> 
     </div>
 
-    <div id="lettrePossible">
-        <%= lettrePossible %> 
-    </div>
+    <select name="lettrePossible" id="lettrePossible_select">
+        <option value="$"></option>
+        <% for( let i = 0; i < lettrePossible.length; i++ ) { %>
+            <option value="<%= lettrePossible[i] %>"><%= lettrePossible[i] %></option>
+        <% } %>
+    </select>
+
 </body>
+
+<script>
+    function afficher(str){
+        let a = document.getElementById("param");
+        a.innerHTML = `<div>
+                voici le document selectionné ${str}
+            </div>`;
+    }
+</script>
 
 </html>

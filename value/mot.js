@@ -6,7 +6,14 @@ let mot = "";
 
 let lettrePossible = "abcdefghijklmnopqrstuvwxyz";
 
+let lettreImpossible = "";
+
 module.exports = {
+
+    getMot(){
+        return mot;
+    },
+
     getLettrePossible(){
         return lettrePossible;
     },
@@ -17,6 +24,10 @@ module.exports = {
 
     getFirstLettre(){
         return firstLettre;
+    },
+
+    setMot(str){
+        mot = str;
     },
 
     setLettrePossible(str){
