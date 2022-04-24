@@ -8,7 +8,8 @@ const port = 3000;
 app.set('view-engine', 'ejs');
 
 //on prévient l'appli que l'on prend ces formes et qu'on veut récupérer les infos qui y sont
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.set('views',__dirname+'/views'); //on dit que l'on veut que les vues viennent du dir /view
 
 

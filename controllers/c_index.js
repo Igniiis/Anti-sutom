@@ -9,10 +9,10 @@ exports.affichage =  function(request,response) {
 exports.postFonction = function(request,response) {
     let mot = request.body.firstLettreChoice + "$".repeat(request.body.nbLettreChoice-request.body.firstLettreChoice.length);
 
-    user.setFirstLettre(request.body.firstLettreChoice);
+    user.setFirstLettre(request.body.firstLettreChoice.toLowerCase());
     user.setLongueur(parseInt(request.body.nbLettreChoice));
-    user.setMot(mot);
+    user.setMot(mot.toUpperCase());
     
     user.setLettrePossible('abcdefghijklmnopqrstuvwxyz');
-    response.redirect('/poursuite');
+    response.redirect('/poursuite/'+mot);
 }

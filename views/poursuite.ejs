@@ -15,6 +15,8 @@
     <form action="" method="post"></form>
 
 
+    <div id="motCache"><%= mot %></div>
+
     <table>
         <% for(let i=0;i<longueur;i++){ %>
             <tr>
@@ -35,32 +37,56 @@
         <% } %> 
     </table>
 
-    <div id="param">
-            <select name="lettreSelected" id="lettreSelectedId">
-                <option value="a"></option>
+
+    <form action="/poursuite" method="post">
+        <div id="param">
+            <div id="texte">
+
+            </div>
+
+            <select name="lettrePossible" id="lettrePossible_select">
+                <option value="$"></option>
+                <% for( let i = 0; i < lettrePossible.length; i++ ) { %>
+                    <option value="<%= lettrePossible[i] %>"><%= lettrePossible[i] %></option>
+                <% } %>
             </select>
         </div>
-    </div>
+
+        <div>
+            <b>lettre impossible :</b>
+            <select name="lettreImpossible" id="lettreImpossible_select">
+                <option value="$"></option>
+                <% for( let i = 0; i < lettrePossible.length; i++ ) { %>
+                    <option value="<%= lettrePossible[i] %>"><%= lettrePossible[i] %></option>
+                <% } %>
+            </select>
+        </div>
+
+        <button type="submit">submit button</button>
+    </form>
 
     <div id="french">
         <%=france %> 
     </div>
 
-    <select name="lettrePossible" id="lettrePossible_select">
-        <option value="$"></option>
-        <% for( let i = 0; i < lettrePossible.length; i++ ) { %>
-            <option value="<%= lettrePossible[i] %>"><%= lettrePossible[i] %></option>
-        <% } %>
-    </select>
-
 </body>
 
 <script>
     function afficher(str){
-        let a = document.getElementById("param");
-        a.innerHTML = `<div>
-                voici le document selectionné ${str}
-            </div>`;
+        
+        let mot = document.getElementById('motCache').textContent[parseInt(str)];
+        let a = document.getElementById("lettrePossible_select");
+        if(mot==='$'){
+            mot = "à trouver";
+            a.style.visibility= "visible";
+            a.options.selectedIndex = 0;
+        }else{
+            a.style.visibility= "hidden";
+        }
+        document.getElementById("texte").innerHTML = `lettre selectionnée : ${str}
+        <br>
+        <br>
+        <b>${mot}</b>`;
     }
 </script>
 
