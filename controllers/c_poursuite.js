@@ -42,7 +42,19 @@ exports.affichage = function(request,response){
 }
 
 
-exports.affichagePrecis = function (request,response) {
+affichageP1 = function (request,response) {
+    
+}
+
+exports.affichageP2 = function (request,response) {
+    
+}
+
+exports.affichageP3 = function (request,response) {
+    
+}
+
+function affichagePrecis(request,response) {
     //demande les infos de l'url
     let long = request.params.mot.length;
     let mot = request.params.mot;
