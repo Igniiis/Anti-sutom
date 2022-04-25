@@ -2,6 +2,10 @@ const res = require('express/lib/response');
 let user = require('../value/mot');
 
 exports.affichage = function(request,response){
+    //à update : lorsque l'on appelle cette fonction c'est losque on a cette adresse localhost:3000/poursuite
+    //ici on a rien à faire de seulement ca donc on redirige la personne vers localhost:3000/    (index)
+    //cette fonction ne doit que faire envoyé vers index, donc quand on arrive dessus on fait 
+    //response.redirect('/');
     let lettre1 = user.getFirstLettre();
     let long = user.getLongueur();
 
