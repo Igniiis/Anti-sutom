@@ -59,15 +59,14 @@ exports.affichagePrecis = function (request,response) {
     }
 
     let french = require('an-array-of-french-words').filter(function(element){
-        element = element.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); //enlève tout accent
-
-
         if(element.includes('-')){ //enlève tout mot avec un "-" dedans
             return false;
         }
         if(element.length!=long){ //enlève tout mot d'une autre taille que celle que l'on veut
             return false;
         }
+        
+        element = element.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); //enlève tout accent
 
         for (let i = 0; i < motLettres.length; i++) {
             if(element[motLettres[i].place]!=motLettres[i].lettre){
