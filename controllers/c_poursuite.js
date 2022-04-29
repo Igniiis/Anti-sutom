@@ -42,22 +42,41 @@ exports.affichage = function(request,response){
 }
 
 
-affichageP1 = function (request,response) {
-    
+exports.affichageP1 = function (request,response) {
+    console.log("mot : " + request.params.mot);
+    console.log("longueur : " + request.params.mot.length);
+    console.log("shhhesh P1");
+    console.log("--------------------------");
+    let french = affichagePrecis(request.params.mot);
+    response.render("test.ejs",{france:french});
 }
 
 exports.affichageP2 = function (request,response) {
-    
+    console.log("mot : " + request.params.mot);
+    console.log("longueur : " + request.params.mot.length);
+    console.log("lettres présentes : " + request.params.lettrePresente + "   (" + request.params.lettrePresente.length + ")");
+    console.log("shhhesh P2");
+    console.log("--------------------------");
+    let french = affichagePrecis(request.params.mot, request.params.lettrePresente);
+    response.render("test.ejs",{france:french});
 }
 
 exports.affichageP3 = function (request,response) {
+    console.log("mot : " + request.params.mot);
+    console.log("longueur : " + request.params.mot.length);
+    console.log("lettres présentes : " + request.params.lettrePresente + "   (" + request.params.lettrePresente.length + ")");
+    console.log("lettres impossibles : " + request.params.lettreImpossible + "   (" + request.params.lettreImpossible.length + ")");
+    console.log("shhhesh P3");
+    console.log("--------------------------");
     
+    let french = affichagePrecis(request.params.mot, request.params.lettrePresente, request.params.lettreImpossible);
+    response.render("test.ejs",{france:french});
 }
 
-function affichagePrecis(request,response) {
-    //demande les infos de l'url
-    let long = request.params.mot.length;
-    let mot = request.params.mot;
+function affichagePrecis(mot,lettrePresente,lettreImpossible) {
+    let long = mot.length;
+    lettreImpossible = lettreImpossible || "";
+    lettrePresente = lettrePresente || "";
 
     let motLettres = [];
 
@@ -80,6 +99,26 @@ function affichagePrecis(request,response) {
         
         element = element.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); //enlève tout accent
 
+
+        for (let i = 0; i < lettreImpossible.length; i++) {
+            if(element.includes(lettreImpossible[i])){
+                return false;
+            }
+        }
+
+        let test = true;
+        let j = 0;
+        while(test && j<lettrePresente.length){
+            if(!element.includes(lettrePresente[j])){
+                test=false;
+                break;
+            }
+            j++;
+        }
+        if(!test){
+            return false;
+        }
+
         for (let i = 0; i < motLettres.length; i++) {
             if(element[motLettres[i].place]!=motLettres[i].lettre){
                 return false;
@@ -87,7 +126,7 @@ function affichagePrecis(request,response) {
         }
         return true;
     });
-    response.render("test.ejs",{france:french});
+    return french;
 }
 
 
