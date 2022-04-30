@@ -3,12 +3,17 @@
     margin-top: 5%;
 }
 
-#texte {
-    margin-bottom: 1%;
+/* à garder, lorsque l'on charge la page on doit pas voir la liste de choix */
+#lettrePresente_select {
+    visibility: hidden;
 }
+
+
 
 /* à garder à tout prix, on doit cacher le mot affiché ainsi */
 #motCache {
     visibility: hidden;
 }
+
+#
 

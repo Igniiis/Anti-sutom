@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/stylePoursuite.css">
     <title>anti-sutom</title>
 </head>
 <body>
 
+    <!-- lien pour retourner à l'accueil -->
+    <a href="/">ANTI-SUTOM</a>
+
+    <!-- mot présent seulement pour les données -->
+    <div id="motCache"><%= mot %></div>
+
+    <!-- nb mots possibles, utilisé dans l'affichage des résultats -->
+    <% let long = france.length %> 
+
+    <!-- variable de l'alphabet à utiliser -->
     <% let alphabet = "abcdefghijklmnopqrstuvwxyz" %> 
 
     <table>
@@ -29,6 +40,18 @@
             </tr>
         <% } %> 
     </table>
+
+    <div id="param">
+        <div id="texte">
+        </div>
+
+        <select name="lettrePossible" id="lettrePresente_select">
+            <option value="$"></option>
+            <% for( let i = 0; i < lettrePresente.length; i++ ) { %>
+                <option value="<%= lettrePresente[i] %>"><%= lettrePresente[i] %></option>
+            <% } %>
+        </select>
+    </div>
 
     <br>
 
@@ -57,20 +80,36 @@
     </ul>
     
 
-    <div id="french">
+
+    <div id="french"> 
+        <h3><%=long %> 
+        <% if (long==1) { %>
+            résultat
+        <% } else { %>
+            résultats
+        <% } %>
+        </h3>
         <% for( let i = 0; i < france.length; i++ ) { %>
             <b><%=france[i]  %> :</b>
         <% } %> 
     </div>
 
-    <a href="/poursuite/a$$$/b">découverte</a>
-
-    <form id="form_" action="/poursuite/a$$$/b" method="post">
-        <label for="mot">mettre le mot</label>
-        <input type="text" name="mot" id="mot">
-
-        <button type="submit">submit</button>
-    </form>
-
 </body>
+
+<script>
+    function afficher(str) {
+        let mot = document.getElementById('motCache').textContent[parseInt(str)];
+        let a = document.getElementById("lettrePresente_select");
+        let res = "_";
+        if(mot==='$'){
+            mot = "à trouver";
+            a.style.visibility= "visible";
+            a.options.selectedIndex = 0;
+        }else{
+            res = mot.toUpperCase();
+            a.style.visibility= "hidden";
+        }
+        document.getElementById("texte").innerHTML = "lettre selectionnée : " + res + " (" + str + ")";        
+    }
+</script>
 </html>
