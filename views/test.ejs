@@ -7,8 +7,11 @@
     <title>anti-sutom</title>
 </head>
 <body>
+    
     <div id="french">
-        <%=france %> 
+        <% for( let i = 0; i < france.length; i++ ) { %>
+            <b><%=france[i]  %> :</b>
+        <% } %> 
     </div>
 
     <form action="/poursuite/" method="post">
