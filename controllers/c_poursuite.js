@@ -43,34 +43,23 @@ exports.affichage = function(request,response){
 
 
 exports.affichageP1 = function (request,response) {
-    console.log("mot : " + request.params.mot);
-    console.log("longueur : " + request.params.mot.length);
-    console.log("shhhesh P1");
-    console.log("--------------------------");
     let french = affichagePrecis(request.params.mot);
-    response.render("test.ejs",{france:french});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:""});
 }
 
 exports.affichageP2 = function (request,response) {
-    console.log("mot : " + request.params.mot);
-    console.log("longueur : " + request.params.mot.length);
-    console.log("lettres présentes : " + request.params.lettrePresente + "   (" + request.params.lettrePresente.length + ")");
-    console.log("shhhesh P2");
-    console.log("--------------------------");
     let french = affichagePrecis(request.params.mot, request.params.lettrePresente);
-    response.render("test.ejs",{france:french});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:""});
 }
 
 exports.affichageP3 = function (request,response) {
-    console.log("mot : " + request.params.mot);
-    console.log("longueur : " + request.params.mot.length);
-    console.log("lettres présentes : " + request.params.lettrePresente + "   (" + request.params.lettrePresente.length + ")");
-    console.log("lettres impossibles : " + request.params.lettreImpossible + "   (" + request.params.lettreImpossible.length + ")");
-    console.log("shhhesh P3");
-    console.log("--------------------------");
-    
     let french = affichagePrecis(request.params.mot, request.params.lettrePresente, request.params.lettreImpossible);
-    response.render("test.ejs",{france:french});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:request.params.lettreImpossible});
+}
+
+exports.affichageP4 = function (request,response){
+    let french = affichagePrecis(request.params.mot,"",request.params.lettreImpossible);
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:request.params.lettreImpossible});
 }
 
 function affichagePrecis(mot,lettrePresente,lettreImpossible) {
@@ -130,20 +119,23 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
 }
 
 
-exports.calcul = function(request,response){
-    //res.redirect(`/poursuite/${long}/${mot}`);
-    console.log("sheeeesh");
+exports.ajoutLettre = function (request,response) {
+    
+    let mot = request.params.mot;
+    let lettreImpossible = request.params.lettreImpossible || "";
+    let lettrePresente = request.params.lettrePresente || "";
+
+    let a = request.body.nouvelleLettrePresente || "";
+    let b = request.body.nouvelleLettreImpossible || "";
+
+    lettrePresente = lettrePresente + a;
+    lettreImpossible = lettreImpossible + b;
+
+    response.redirect(`/poursuite/${mot}/${lettrePresente}/${lettreImpossible}`);
 }
 
 
 /**
-.filter(d => /anti/.test(d));
-//tous les mots contenant "anti"
-
-.filter(word => word.length > 6)
-//longueur du mot
-
-
 function premiereLettre(element){
     return !element.charAt(0).localeCompare(lettre1);     
 }

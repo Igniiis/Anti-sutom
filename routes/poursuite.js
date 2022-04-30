@@ -11,6 +11,8 @@ router.get('/poursuite/:mot/:lettrePresente',poursuite.affichageP2);
 
 router.get('/poursuite/:mot/:lettrePresente/:lettreImpossible',poursuite.affichageP3);
 
-router.post('/poursuite',poursuite.calcul);
+router.get('/poursuite/:mot//:lettreImpossible',poursuite.affichageP4);
+
+//router.post('/test',poursuite.test);
 
 module.exports = router;

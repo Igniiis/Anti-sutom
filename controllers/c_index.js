@@ -7,7 +7,7 @@ exports.affichage =  function(request,response) {
 
 
 exports.postFonction = function(request,response) {
-    let mot = request.body.firstLettreChoice + "$".repeat(request.body.nbLettreChoice-request.body.firstLettreChoice.length);
+    let mot = request.body.firstLettreChoice.toLowerCase() + "$".repeat(request.body.nbLettreChoice-request.body.firstLettreChoice.length);
 
     user.setFirstLettre(request.body.firstLettreChoice.toLowerCase());
     user.setLongueur(parseInt(request.body.nbLettreChoice));

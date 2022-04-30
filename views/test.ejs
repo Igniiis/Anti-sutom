@@ -7,14 +7,65 @@
     <title>anti-sutom</title>
 </head>
 <body>
+
+    <% let alphabet = "abcdefghijklmnopqrstuvwxyz" %> 
+
+    <table>
+        <% for(let i=0;i<mot.length;i++){ %>
+            <tr>
+                <td>
+                    <a class="click" onclick="afficher(<%= i %>)">
+                        <span>
+                            <% if (mot[i]!="$") { %>
+                                <!-- ici mettre code de lorsque la lettre est sur -->
+                                <%= mot[i] %>
+                            <% } else { %>
+                                <!-- ici mettre le code de lorsque la lettre est à trouvé -->
+                                ___A trouver___                    
+                            <% } %> 
+                        </span>
+                    </a>
+                </td>
+            </tr>
+        <% } %> 
+    </table>
+
+    <br>
+
+    <label for="listeLettrePresente">choisir lettre présente dans le mot forcément</label>
+    <ul id="listeLettrePresente">
+        <% for( let i = 0; i < alphabet.length; i++ ) { %>
+            <li>
+                <% if (!lettrePresente.includes(alphabet[i])) { %>
+                    <a href="/poursuite/<%=mot%>/<%=lettrePresente+alphabet[i]%>/<%=lettreImpossible%>"> <%=alphabet[i]  %> </a> 
+                <% } %>
+            </li>
+        <% } %>
+    </ul>
+
+
+    <br>
+    <label for="listeLettreImpossible">choisir lettre présente dans le mot forcément</label>
+    <ul id="listeLettreImpossible">
+        <% for( let i = 0; i < alphabet.length; i++ ) { %>
+            <li>
+                <% if (!lettreImpossible.includes(alphabet[i])) { %>
+                    <a href="/poursuite/<%=mot%>/<%=lettrePresente%>/<%=lettreImpossible+alphabet[i]%>"> <%=alphabet[i]  %> </a> 
+                <% } %>
+            </li>
+        <% } %>
+    </ul>
     
+
     <div id="french">
         <% for( let i = 0; i < france.length; i++ ) { %>
             <b><%=france[i]  %> :</b>
         <% } %> 
     </div>
 
-    <form action="/poursuite/" method="post">
+    <a href="/poursuite/a$$$/b">découverte</a>
+
+    <form id="form_" action="/poursuite/a$$$/b" method="post">
         <label for="mot">mettre le mot</label>
         <input type="text" name="mot" id="mot">
 
