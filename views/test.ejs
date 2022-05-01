@@ -12,8 +12,10 @@
     <!-- lien pour retourner à l'accueil -->
     <a href="/">ANTI-SUTOM</a>
 
-    <!-- mot présent seulement pour les données -->
+    <!-- données présentes seulement pour le js -->
     <div id="motCache"><%= mot %></div>
+    <div id="lettreImpossibleCache"><%=lettreImpossible%></div> 
+    <div id="lettrePresenteCache"><%=lettrePresente%></div>
 
     <!-- nb mots possibles, utilisé dans l'affichage des résultats -->
     <% let long = france.length %> 
@@ -45,10 +47,13 @@
         <div id="texte">
         </div>
 
-        <select name="lettrePossible" id="lettrePresente_select">
-            <option value="$"></option>
-            <% for( let i = 0; i < lettrePresente.length; i++ ) { %>
-                <option value="<%= lettrePresente[i] %>"><%= lettrePresente[i] %></option>
+        <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
+            <option value=""></option>
+            <% for( let i = 0; i < alphabet.length; i++ ) { %>
+
+                <% if (!lettreImpossible.includes(alphabet[i])) { %>
+                    <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
+                <% } %>
             <% } %>
         </select>
     </div>
@@ -97,19 +102,47 @@
 </body>
 
 <script>
+
+    let mot = document.getElementById('motCache').textContent;
+    let lettrePresente = document.getElementById('lettrePresenteCache').textContent;
+    let lettreImpossible = document.getElementById('lettreImpossibleCache').textContent;
+
+    let nb = 0;
+
+    function changerLien(param) {
+        console.log(param);
+        if(param){
+            let nMot = mot;
+            nMot[nb] = param;
+            nMot = setCharAt(nMot,nb,param);
+
+            if(lettreImpossible){
+                window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible;                
+            }else{
+                window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
+            }
+        }
+    }
+
     function afficher(str) {
-        let mot = document.getElementById('motCache').textContent[parseInt(str)];
+        let m = document.getElementById('motCache').textContent[parseInt(str)];
+        nb = parseInt(str);
         let a = document.getElementById("lettrePresente_select");
         let res = "_";
-        if(mot==='$'){
-            mot = "à trouver";
+        if(m==='$'){
+            m = "à trouver";
             a.style.visibility= "visible";
             a.options.selectedIndex = 0;
         }else{
-            res = mot.toUpperCase();
+            res = m.toUpperCase();
             a.style.visibility= "hidden";
         }
         document.getElementById("texte").innerHTML = "lettre selectionnée : " + res + " (" + str + ")";        
     }
+
+    function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substring(0,index) + chr + str.substring(index+1);
+}
 </script>
 </html>
