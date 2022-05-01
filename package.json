@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node ./app.js"
+  },
   "dependencies": {
     "an-array-of-french-words": "^2.0.0",
     "ejs": "^3.1.6",
