@@ -1,6 +1,8 @@
 const res = require('express/lib/response');
 let user = require('../value/mot');
 
+let lLettres = "abcdefghijklmnopqrstuvwxyz";
+
 exports.affichage = function(request,response){
     //à update : lorsque l'on appelle cette fonction c'est losque on a cette adresse localhost:3000/poursuite
     //ici on a rien à faire de seulement ca donc on redirige la personne vers localhost:3000/    (index)
@@ -44,23 +46,25 @@ exports.affichage = function(request,response){
 
 exports.affichageP1 = function (request,response) {
     let french = affichagePrecis(request.params.mot);
-    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:""});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:"",alphabet:lLettres});
 }
 
 exports.affichageP2 = function (request,response) {
     let french = affichagePrecis(request.params.mot, request.params.lettrePresente);
-    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:""});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:"" ,alphabet:lLettres});
 }
 
 exports.affichageP3 = function (request,response) {
     let french = affichagePrecis(request.params.mot, request.params.lettrePresente, request.params.lettreImpossible);
-    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:request.params.lettreImpossible});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:request.params.lettrePresente,lettreImpossible:request.params.lettreImpossible ,alphabet:lLettres});
 }
 
 exports.affichageP4 = function (request,response){
     let french = affichagePrecis(request.params.mot,"",request.params.lettreImpossible);
-    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:request.params.lettreImpossible});
+    response.render("test.ejs",{france:french,mot:request.params.mot,lettrePresente:"",lettreImpossible:request.params.lettreImpossible ,alphabet:lLettres});
 }
+
+
 
 function affichagePrecis(mot,lettrePresente,lettreImpossible) {
     let long = mot.length;
@@ -77,6 +81,21 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
             })
         }
     }
+
+    let t_lettrePresente = lettrePresente.split("");
+    let verif_multipleLettres = false;
+    for (let i = 0; i < lettrePresente.length; i++) {
+        if(lettrePresente.lastIndexOf(lettrePresente[i])!=lettrePresente.indexOf(lettrePresente[i])){
+            verif_multipleLettres = true;
+            break;
+        }
+    }
+
+    console.log(lettrePresente);
+    console.log(verif_multipleLettres);
+
+    
+    let alphabet = "";
 
     let french = require('an-array-of-french-words').filter(function(element){
         if(element.includes('-')){ //enlève tout mot avec un "-" dedans
@@ -99,13 +118,19 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
         let j = 0;
         while(test && j<lettrePresente.length){
             if(!element.includes(lettrePresente[j])){
-                test=false;
-                break;
+                return false;
+            }else{
+
+                //partie pour vérifier si on a autant de fois le nombre de lettres dans le cas où
+                //il y a plusieurs fois les mêmes lettres
+                if(verif_multipleLettres){
+                    if(element.split(lettrePresente[j]).length<lettrePresente.split(lettrePresente[j]).length){
+                        return false;
+                    }
+                }
+
             }
             j++;
-        }
-        if(!test){
-            return false;
         }
 
         for (let i = 0; i < motLettres.length; i++) {
@@ -113,8 +138,15 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
                 return false;
             }
         }
+        for(let i=0;i<element.length;i++){
+            if(!alphabet.includes(element[i])){
+                alphabet = alphabet+element[i];
+            }
+        }
         return true;
     });
+
+    lLettres = ordreAlphabetique(alphabet);
     return french;
 }
 
@@ -135,10 +167,7 @@ exports.ajoutLettre = function (request,response) {
 }
 
 
-/**
-function premiereLettre(element){
-    return !element.charAt(0).localeCompare(lettre1);     
-}
 
-.filter(premiereLettre)
- */
+function ordreAlphabetique(texte) {
+    return texte.split('').sort().join('');
+}

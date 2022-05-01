@@ -21,7 +21,7 @@
     <% let long = france.length %> 
 
     <!-- variable de l'alphabet à utiliser -->
-    <% let alphabet = "abcdefghijklmnopqrstuvwxyz" %> 
+    <% //let alphabet = "abcdefghijklmnopqrstuvwxyz" %> 
 
     <table>
         <% for(let i=0;i<mot.length;i++){ %>
@@ -60,27 +60,26 @@
 
     <br>
 
-    <label for="listeLettrePresente">choisir lettre présente dans le mot forcément</label>
+    <label for="listeLettrePresente">choisir une lettre qui est présente dans le mot forcément</label>
     <ul id="listeLettrePresente">
         <% for( let i = 0; i < alphabet.length; i++ ) { %>
+            <%// if (!lettrePresente.includes(alphabet[i])) { %>
             <li>
-                <% if (!lettrePresente.includes(alphabet[i])) { %>
-                    <a href="/poursuite/<%=mot%>/<%=lettrePresente+alphabet[i]%>/<%=lettreImpossible%>"> <%=alphabet[i]  %> </a> 
-                <% } %>
+                <a href="/poursuite/<%=mot%>/<%=lettrePresente+alphabet[i]%>/<%=lettreImpossible%>"> <%=alphabet[i]  %> </a> 
             </li>
         <% } %>
     </ul>
 
 
     <br>
-    <label for="listeLettreImpossible">choisir lettre présente dans le mot forcément</label>
+    <label for="listeLettreImpossible">choisir une lettre qui n'est pas dans le mot</label>
     <ul id="listeLettreImpossible">
-        <% for( let i = 0; i < alphabet.length; i++ ) { %>
-            <li>
-                <% if (!lettreImpossible.includes(alphabet[i])) { %>
-                    <a href="/poursuite/<%=mot%>/<%=lettrePresente%>/<%=lettreImpossible+alphabet[i]%>"> <%=alphabet[i]  %> </a> 
-                <% } %>
-            </li>
+        <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
+            <% if (!lettreImpossible.includes("abcdefghijklmnopqrstuvwxyz"[i]) ) { %>
+                <li>
+                    <a href="/poursuite/<%=mot%>/<%=lettrePresente%>/<%=lettreImpossible+"abcdefghijklmnopqrstuvwxyz"[i]%>"> <%="abcdefghijklmnopqrstuvwxyz"[i]  %> </a> 
+                </li>
+            <% } %>
         <% } %>
     </ul>
     
