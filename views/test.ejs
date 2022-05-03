@@ -118,6 +118,16 @@
     function changerLien(param) {
         console.log(param);
         if(param){
+            if(mot[nb]!='$'){
+                let x = lettrePresente.indexOf(mot[nb]);
+                if(x<0){
+                    lettrePresente = lettrePresente + param;
+                }else{
+                    lettrePresente = setCharAt(lettrePresente,x,param);
+                }
+            }else{
+                lettrePresente = lettrePresente + param;
+            }
             let nMot = mot;
             nMot[nb] = param;
             nMot = setCharAt(nMot,nb,param);

@@ -63,7 +63,9 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
 
         for (let i = 0; i < lettreImpossible.length; i++) {
             if(element.includes(lettreImpossible[i])){
-                return false;
+                if(!lettrePresente.includes(lettreImpossible[i])){
+                    return false;
+                }
             }
         }
 
