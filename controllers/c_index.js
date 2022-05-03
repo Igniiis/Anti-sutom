@@ -14,5 +14,5 @@ exports.postFonction = function(request,response) {
     user.setMot(mot.toUpperCase());
     
     user.setLettrePossible('abcdefghijklmnopqrstuvwxyz');
-    response.redirect('/poursuite/'+mot);
+    response.redirect('/poursuite/'+mot+'/'+request.body.firstLettreChoice.toLowerCase());
 }

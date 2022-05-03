@@ -56,6 +56,13 @@
                 <% } %>
             <% } %>
         </select>
+
+        <select name="alphabetComplet" id="alphabetComplet_select" onchange="changerLien(this.value)">
+            <option value=""></option>
+            <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
+                <option value="<%= "abcdefghijklmnopqrstuvwxyz"[i] %>" href="/"><%= "abcdefghijklmnopqrstuvwxyz"[i] %></option>                 
+            <% } %>
+        </select>
     </div>
 
     <br>
@@ -127,12 +134,15 @@
         let m = document.getElementById('motCache').textContent[parseInt(str)];
         nb = parseInt(str);
         let a = document.getElementById("lettrePresente_select");
+        let b = document.getElementById("alphabetComplet_select");
         let res = "_";
         if(m==='$'){
+            b.style.visibility="hidden";
             m = "à trouver";
             a.style.visibility= "visible";
             a.options.selectedIndex = 0;
         }else{
+            b.style.visibility="visible";
             res = m.toUpperCase();
             a.style.visibility= "hidden";
         }

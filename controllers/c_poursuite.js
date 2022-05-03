@@ -1,47 +1,4 @@
-const res = require('express/lib/response');
-let user = require('../value/mot');
-
 let lLettres = "abcdefghijklmnopqrstuvwxyz";
-
-exports.affichage = function(request,response){
-    //à update : lorsque l'on appelle cette fonction c'est losque on a cette adresse localhost:3000/poursuite
-    //ici on a rien à faire de seulement ca donc on redirige la personne vers localhost:3000/    (index)
-    //cette fonction ne doit que faire envoyé vers index, donc quand on arrive dessus on fait 
-    //response.redirect('/');
-    let lettre1 = user.getFirstLettre();
-    let long = user.getLongueur();
-
-    let french = require('an-array-of-french-words').filter(function(element){
-        //code pour enlever les accents
-        element = element.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        
-        if(element.includes('-')){
-            return false;
-        }
-        if(element.length!=long){
-            return false;
-        }
-        return !element.slice(0,lettre1.length).localeCompare(lettre1);
-    });
-
-    let optimizeAlphabet = user.getLettrePossible();
-    french.forEach(element => {
-        for(let i=0;i<optimizeAlphabet.length;i++){
-            if(element.includes(optimizeAlphabet[i])){
-                optimizeAlphabet=optimizeAlphabet.replace(optimizeAlphabet[i],'');
-            }
-        }
-    });
-    optimizeAlphabet=optimizeAlphabet.replace('a','');
-
-    for(let i=0;i<optimizeAlphabet.length;i++){
-        if(user.getLettrePossible().includes(optimizeAlphabet[i])){
-            user.RemoveLettrePossible(optimizeAlphabet[i]);
-        }
-    }
-
-    response.render('poursuite.ejs',{longueur:long,premiereLettre:lettre1,france:french,lettrePossible:user.getLettrePossible(),mot:user.getMot()});
-}
 
 
 exports.affichageP1 = function (request,response) {
@@ -82,7 +39,6 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
         }
     }
 
-    let t_lettrePresente = lettrePresente.split("");
     let verif_multipleLettres = false;
     for (let i = 0; i < lettrePresente.length; i++) {
         if(lettrePresente.lastIndexOf(lettrePresente[i])!=lettrePresente.indexOf(lettrePresente[i])){
@@ -90,9 +46,6 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
             break;
         }
     }
-
-    console.log(lettrePresente);
-    console.log(verif_multipleLettres);
 
     
     let alphabet = "";

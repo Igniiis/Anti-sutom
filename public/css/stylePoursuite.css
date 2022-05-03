@@ -8,6 +8,10 @@
     visibility: hidden;
 }
 
+#alphabetComplet_select {
+    visibility: hidden;
+}
+
 
 /* à garder à tout prix, on doit cacher le mot affiché ainsi */
 #motCache {
