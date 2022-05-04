@@ -13,8 +13,6 @@ app.use(express.json());
 app.set('views',__dirname+'/views'); //on dit que l'on veut que les vues viennent du dir /view
 
 
-
-
 //pour relier le css au projet
 app.use(express.static(__dirname + '/public'));
 
@@ -27,7 +25,10 @@ app.use(require('./routes/index'));
 //route pour la suite de la recherche
 app.use(require('./routes/poursuite'));
 
-
+//route de sitemap
+app.get('/sitemap.xml', function(req, res) {
+    res.sendFile(__dirname+'/views/sitemap.xml');
+    })
 
 // le serveur tourne sur le port précisé
 app.listen(port);
