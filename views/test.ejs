@@ -47,6 +47,10 @@
         <div id="texte">
         </div>
 
+        <div id="supprimerLettre">
+            <button id="deleteButton">supprimer</button>
+        </div>
+
         <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
             <option value=""></option>
             <% for( let i = 0; i < alphabet.length; i++ ) { %>
@@ -115,25 +119,61 @@
 
     let nb = 0;
 
+    let deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click',enleverLettreMot);
+
+    function enleverLettrePresente(id){ // fonction pour supprimer une des lettres de la liste des lettresPresentes mais pas utilisé
+        lettrePresente = setCharAt(lettrePresente,id,'');
+        if(lettreImpossible){
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible + "_" + x;                
+        }else{
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
+        }
+    }
+
+    function enleverLettreMot(){
+        lettrePresente = setCharAt(lettrePresente,lettrePresente.indexOf(mot[nb]),'');
+        let nMot = setCharAt(mot,nb,'$');
+        
+        if(lettreImpossible){
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible + "_" + x;                
+        }else{
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
+        }
+    }
+
     function changerLien(param) {
         console.log(param);
+        let x = "";
         if(param){
-            if(mot[nb]!='$'){
-                let x = lettrePresente.indexOf(mot[nb]);
-                if(x<0){
+            console.log(x);
+            if(mot[nb]!='$'){ // si on modifie une lettre déjà choisi
+                x = lettrePresente.indexOf(mot[nb]);
+                if(x<0){ //dans le cas où la lettre selectionnée n'est pas dans dans lettrePresente, x vaudra -1
                     lettrePresente = lettrePresente + param;
                 }else{
                     lettrePresente = setCharAt(lettrePresente,x,param);
                 }
-            }else{
-                lettrePresente = lettrePresente + param;
+                
+            }else{ // si on choisi une nouvelle lettre du mot 
+                x = lettrePresente.indexOf(param);
+                if(x<0){ // dans le cas où la lettre selectionnée n'est pas dans lettrePresente, x vaudra -1
+                    //ajouter la lettre tout simplement
+                    lettrePresente = lettrePresente + param;
+                }else{
+                    if(count(lettrePresente,param)<count(mot,param)+1){ //si il y a plus de fois la lettre dans mot que dans lettre presente
+                        //on ajoute la lettre à lettrePresente
+                        lettrePresente = lettrePresente + param;
+                    }
+                }
+
             }
             let nMot = mot;
             nMot[nb] = param;
             nMot = setCharAt(nMot,nb,param);
 
             if(lettreImpossible){
-                window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible;                
+                window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible ;                
             }else{
                 window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
             }
@@ -141,17 +181,23 @@
     }
 
     function afficher(str) {
-        let m = document.getElementById('motCache').textContent[parseInt(str)];
         nb = parseInt(str);
+        let m = document.getElementById('motCache').textContent[nb];
         let a = document.getElementById("lettrePresente_select");
         let b = document.getElementById("alphabetComplet_select");
+        let c = document.getElementById("supprimerLettre");
         let res = "_";
         if(m==='$'){
+            c.style.visibility="hidden";
             b.style.visibility="hidden";
             m = "à trouver";
             a.style.visibility= "visible";
             a.options.selectedIndex = 0;
         }else{
+            if(nb==0){
+                c.style.visibility="hidden";
+            }
+            c.style.visibility="visible";
             b.style.visibility="visible";
             res = m.toUpperCase();
             a.style.visibility= "hidden";
@@ -160,8 +206,12 @@
     }
 
     function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substring(0,index) + chr + str.substring(index+1);
-}
+        if(index > str.length-1) return str;
+        return str.substring(0,index) + chr + str.substring(index+1);
+    }
+
+    function count(str, find) {
+        return (str.split(find)).length - 1;
+    }
 </script>
 </html>

@@ -63,6 +63,17 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
 
         for (let i = 0; i < lettreImpossible.length; i++) {
             if(element.includes(lettreImpossible[i])){
+                if(lettrePresente.includes(lettreImpossible[i])){
+                    if(count(element,lettreImpossible[i])>count(lettrePresente,lettreImpossible[i])){
+                        return false;
+                    }       // mot: maman
+                            // lettrePresente: ma
+                            // lettreImpossible: a
+                }else{
+                    return false;
+                }
+
+
                 if(!lettrePresente.includes(lettreImpossible[i])){
                     return false;
                 }
@@ -125,4 +136,8 @@ exports.ajoutLettre = function (request,response) {
 
 function ordreAlphabetique(texte) {
     return texte.split('').sort().join('');
+}
+
+function count(str, find) {
+    return (str.split(find)).length - 1;
 }
