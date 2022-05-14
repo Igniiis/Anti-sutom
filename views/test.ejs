@@ -21,13 +21,13 @@
     <% let long = france.length %> 
 
     <!-- variable de l'alphabet à utiliser -->
-    <% //let alphabet = "abcdefghijklmnopqrstuvwxyz" %> 
+    <% //let alphabet = "abcdefghijklmnopqrstuvwxyz" %>
 
-    <table>
-        <% for(let i=0;i<mot.length;i++){ %>
-            <tr>
-                <td>
-                    <a class="click" onclick="afficher(<%= i %>)">
+    <div id="container_lettreMot">
+        <ul id="lettreMot">
+            <% for(let i=0;i<mot.length;i++){ %>
+                <li class="click">
+                    <a href="#" onclick="afficher(<%= i %>)">
                         <span>
                             <% if (mot[i]!="$") { %>
                                 <!-- ici mettre code de lorsque la lettre est sur -->
@@ -38,38 +38,38 @@
                             <% } %> 
                         </span>
                     </a>
-                </td>
-            </tr>
-        <% } %> 
-    </table>
+                </li>
+            <% } %> 
+        </ul>
+    
 
-    <div id="param">
-        <div id="texte">
+
+        <div id="param">
+            <div id="container_param">
+                <div id="texte">
+                </div>
+
+                <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
+                    <% for( let i = 0; i < alphabet.length; i++ ) { %>
+
+                        <% if (!lettreImpossible.includes(alphabet[i])) { %>
+                            <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
+                        <% } %>
+                    <% } %>
+                </select>
+
+                <select name="alphabetComplet" id="alphabetComplet_select" onchange="changerLien(this.value)">
+                    <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
+                        <option value="<%= "abcdefghijklmnopqrstuvwxyz"[i] %>" href="/"><%= "abcdefghijklmnopqrstuvwxyz"[i] %></option>                 
+                    <% } %>
+                </select>
+
+                <div id="supprimerLettre">
+                    <button id="deleteButton">supprimer</button>
+                </div>
+            </div>
         </div>
-
-        <div id="supprimerLettre">
-            <button id="deleteButton">supprimer</button>
-        </div>
-
-        <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
-            <option value=""></option>
-            <% for( let i = 0; i < alphabet.length; i++ ) { %>
-
-                <% if (!lettreImpossible.includes(alphabet[i])) { %>
-                    <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
-                <% } %>
-            <% } %>
-        </select>
-
-        <select name="alphabetComplet" id="alphabetComplet_select" onchange="changerLien(this.value)">
-            <option value=""></option>
-            <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
-                <option value="<%= "abcdefghijklmnopqrstuvwxyz"[i] %>" href="/"><%= "abcdefghijklmnopqrstuvwxyz"[i] %></option>                 
-            <% } %>
-        </select>
     </div>
-
-    <br>
 
     <label for="listeLettrePresente">choisir une lettre qui est présente dans le mot forcément</label>
     <ul id="listeLettrePresente">
@@ -121,6 +121,20 @@
 
     let deleteButton = document.getElementById('deleteButton');
     deleteButton.addEventListener('click',enleverLettreMot);
+
+    window.addEventListener('click', function(e){
+
+        if (document.getElementById('lettreMot').contains(e.target) || document.getElementById("container_param").contains(e.target) ){ 
+            console.log("in the box");
+        } else{
+            document.getElementById("container_param").style.visibility = "hidden";
+            document.getElementById("lettrePresente_select").style.visibility = "hidden";
+            document.getElementById("alphabetComplet_select").style.visibility = "hidden";
+            document.getElementById("supprimerLettre").style.visibility = "hidden";
+            console.log("outside the box");
+        }
+    });
+    
 
     function enleverLettrePresente(id){ // fonction pour supprimer une des lettres de la liste des lettresPresentes mais pas utilisé
         lettrePresente = setCharAt(lettrePresente,id,'');
@@ -187,6 +201,7 @@
         let b = document.getElementById("alphabetComplet_select");
         let c = document.getElementById("supprimerLettre");
         let res = "_";
+        document.getElementById("container_param").style.visibility = "visible";
         if(m==='$'){
             c.style.visibility="hidden";
             b.style.visibility="hidden";

@@ -1,7 +1,74 @@
+#lettreMot {
+    text-align: center;
+}
+#lettreMot li{
+    display: inline-block;
+    min-width: 5em;
+    margin: 0 0.5em;
+}
+
+.click :hover{
+    background-color: red;
+    
+}
+
+
+span{
+    color: black;
+}
+
+
 #param {
     margin-bottom: 5%;
     margin-top: 5%;
+    text-align: center;
 }
+
+#container_param {
+    visibility: hidden;
+    background-color: blueviolet;
+    border-radius: 15px;
+    border-color: black;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+
+
+#lettrePresente_select {
+    background-color: red;
+    border-radius: 10px;
+    scrollbar-width: 100px;
+    
+} 
+
+
+/* hide scrollbar but allow scrolling */
+#lettrePresente_select {
+    /*-ms-overflow-style: none; /* for Internet Explorer, Edge */
+    /*scrollbar-width: none; /* for Firefox */
+    /* overflow-y: scroll;  */
+    scrollbar-width: 5px;
+}
+
+#lettrePresente_select::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #aaa;
+    /*display: none; /* for Chrome, Safari, and Opera */
+}
+
+#lettrePresente_select::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+
+select[multiple]{
+    height: 100%;
+}
+
+
+
 
 /* à garder, lorsque l'on charge la page on doit pas voir la liste de choix */
 #lettrePresente_select {
@@ -15,7 +82,6 @@
 #supprimerLettre {
     visibility: hidden;
 }
-
 
 /* à garder à tout prix, on doit cacher le mot affiché ainsi */
 #motCache {
