@@ -54,53 +54,13 @@
         </div>
     
 
-        <button type="submit">boutton test</button>
-
-    <!-- <div id="firstSearch">
-        <div class="wrapper">
-
-            <a onclick="rechercher()" id="bouton">
-                <span >rechercher</span>
-            </a>
-            
+        <div id="firstSearch">
+            <div class="wrapper">
+                <a href="/"><button type="submit" class="bn632-hover bn21">chercher</button></a>
+            </div>
         </div>
 
-    </div> -->
-
 </form>
-
-    <script>
-    document.addEventListener('keydown',function(event){
-        if(event.code==="Enter"){
-            document.getElementById('bouton').click;
-            rechercher();
-        }
-    })
-
-    function rechercher() {
-        let l=document.getElementById("nbLettre-choice").value;
-        if (l==="" || isNaN(l)){
-            alert("vous n'avez pas donnez la longueur du mot");
-        }else{
-            let f=document.getElementById("firstLettre-choice").value;
-            if (f===""){
-                alert("vous n'avez pas donnez la première lettre du mot");
-            }else{
-                if(parseInt(l)>=f.length){
-                    var hasNumber = /\d/;
-                    if(hasNumber.test(f)){
-                        alert("la ou les premières lettres contiennent des nombres");
-                    }else{
-                        var form = document.getElementById("my_form");
-                        form.submit();
-                    }
-                }else{
-                    alert("attention la longueur du mot est inférieur au nombre de lettres choisis");
-                }
-            }
-        }
-    }
-    </script>
 
 </body>
 
