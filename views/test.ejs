@@ -20,21 +20,19 @@
     <!-- nb mots possibles, utilisé dans l'affichage des résultats -->
     <% let long = france.length %> 
 
-    <!-- variable de l'alphabet à utiliser -->
-    <% //let alphabet = "abcdefghijklmnopqrstuvwxyz" %>
 
     <div id="container_lettreMot">
         <ul id="lettreMot">
             <% for(let i=0;i<mot.length;i++){ %>
-                <li class="click-hover click">
-                    <a onclick="afficher(<%= i %>)">
+                <li class="click-hover click" onclick="afficher(<%= i %>)">
+                    <a>
                         <span>
                             <% if (mot[i]!="$") { %>
                                 <!-- ici mettre code de lorsque la lettre est sur -->
                                 <%= mot[i] %>
                             <% } else { %>
                                 <!-- ici mettre le code de lorsque la lettre est à trouvé -->
-                                ___A trouver___                    
+                                _                  
                             <% } %> 
                         </span>
                     </a>
@@ -71,42 +69,47 @@
         </div>
     </div>
 
-    <label for="listeLettrePresente">choisir une lettre qui est présente dans le mot forcément</label>
-    <ul id="listeLettrePresente">
-        <% for( let i = 0; i < alphabet.length; i++ ) { %>
-            <%// if (!lettrePresente.includes(alphabet[i])) { %>
-            <li>
-                <a href="/poursuite/<%=mot%>/<%=lettrePresente+alphabet[i]%>/<%=lettreImpossible%>"> <%=alphabet[i]  %> </a> 
-            </li>
-        <% } %>
-    </ul>
+    <div class="row">
+        <div class="column left bordure">
+            <label for="listeLettrePresente">choisir une lettre qui est présente dans le mot forcément</label>
+            <ul id="listeLettrePresente">
+                <% for( let i = 0; i < alphabet.length; i++ ) { %>
+                    <%// if (!lettrePresente.includes(alphabet[i])) { %>
+                    <li>
+                        <a href="/poursuite/<%=mot%>/<%=lettrePresente+alphabet[i]%>/<%=lettreImpossible%>"> <%=alphabet[i]  %> </a> 
+                    </li>
+                <% } %>
+            </ul>
+        </div>
 
+        <div class="column middle" id="mid">
+            <div id="french"> 
+                <h3><%=long %> 
+                <% if (long==1) { %>
+                    résultat
+                <% } else { %>
+                    résultats
+                <% } %>
+                </h3>
+                <% for( let i = 0; i < france.length; i++ ) { %>
+                    <b id="<%=i %>" class="listeMotsFrance" onclick="stanislasFail(<%=i %>)"><%=france[i]  %> :</b>
+                <% } %>
+            </div>
+        </div>
 
-    <br>
-    <label for="listeLettreImpossible">choisir une lettre qui n'est pas dans le mot</label>
-    <ul id="listeLettreImpossible">
-        <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
-            <% if (!lettreImpossible.includes("abcdefghijklmnopqrstuvwxyz"[i]) ) { %>
-                <li>
-                    <a href="/poursuite/<%=mot%>/<%=lettrePresente%>/<%=lettreImpossible+"abcdefghijklmnopqrstuvwxyz"[i]%>"> <%="abcdefghijklmnopqrstuvwxyz"[i]  %> </a> 
-                </li>
-            <% } %>
-        <% } %>
-    </ul>
-    
+        <div class="column right bordure">
+            <label for="listeLettreImpossible">choisir une lettre qui n'est pas dans le mot</label>
+            <ul id="listeLettreImpossible">
+                <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
+                    <% if (!lettreImpossible.includes("abcdefghijklmnopqrstuvwxyz"[i]) ) { %>
+                        <li>
+                            <a href="/poursuite/<%=mot%>/<%=lettrePresente%>/<%=lettreImpossible+"abcdefghijklmnopqrstuvwxyz"[i]%>"> <%="abcdefghijklmnopqrstuvwxyz"[i]  %> </a> 
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        </div>
 
-
-    <div id="french"> 
-        <h3><%=long %> 
-        <% if (long==1) { %>
-            résultat
-        <% } else { %>
-            résultats
-        <% } %>
-        </h3>
-        <% for( let i = 0; i < france.length; i++ ) { %>
-            <b><%=france[i]  %> :</b>
-        <% } %> 
     </div>
 
 </body>
@@ -125,14 +128,21 @@
     window.addEventListener('click', function(e){
 
         if (document.getElementById('lettreMot').contains(e.target) || document.getElementById("container_param").contains(e.target) ){ 
-            console.log("in the box");
+            
         } else{
             document.getElementById("container_param").style.visibility = "hidden";
             document.getElementById("lettrePresente_select").style.visibility = "hidden";
             document.getElementById("alphabetComplet_select").style.visibility = "hidden";
             document.getElementById("supprimerLettre").style.visibility = "hidden";
-            console.log("outside the box");
         }
+
+        if(!document.getElementById('mid').contains(e.target)){
+            //let a = document.getElementsByClassName('listeMotsFrance');
+            //for(let i=0;i<a.length;i++){
+            //    a[i].style.fontSize = "15px";
+            //}
+        }
+
     });
     
 
@@ -227,6 +237,16 @@
 
     function count(str, find) {
         return (str.split(find)).length - 1;
+    }
+
+    function stanislasFail(str) {
+
+        let a = document.getElementsByClassName('listeMotsFrance');
+        for(let i=0;i<a.length;i++){
+            a[i].style.fontSize = "15px";
+        }
+
+        document.getElementById(str).style.fontSize = "25px";
     }
 </script>
 </html>

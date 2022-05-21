@@ -1,3 +1,43 @@
+body {
+    background-color: yellow;
+}
+
+b {
+    padding: 5px;
+    font-size: 15px;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    border-color: #000;
+}
+
+.bordure{
+    height: 100%;
+    width: 20%;
+    /* border-style: solid; */
+    background-color: #aaa;
+}
+  
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.middle {
+    border-radius: 10px;
+    background-color: #ff9a44;
+    display: inline-block;
+    width: 60%;
+}
+  
+
+
+
 #lettreMot {
     text-align: center;
 }
