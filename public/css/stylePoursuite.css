@@ -29,6 +29,8 @@ b {
 }
 
 .middle {
+    position: absolute;
+    min-height: 70%;
     border-radius: 10px;
     background-color: #ff9a44;
     display: inline-block;

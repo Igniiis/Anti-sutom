@@ -48,6 +48,7 @@
                 </div>
 
                 <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
+                    <option value=""> </option>
                     <% for( let i = 0; i < alphabet.length; i++ ) { %>
 
                         <% if (!lettreImpossible.includes(alphabet[i])) { %>
