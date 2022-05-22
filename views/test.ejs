@@ -50,7 +50,6 @@
                 <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
                     <option value=""> </option>
                     <% for( let i = 0; i < alphabet.length; i++ ) { %>
-
                         <% if (!lettreImpossible.includes(alphabet[i])) { %>
                             <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
                         <% } %>
@@ -68,6 +67,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="motConceil">
+        <%=motConceil %> 
     </div>
 
     <div class="row">
@@ -225,6 +228,7 @@
             }
             c.style.visibility="visible";
             b.style.visibility="visible";
+            b.value = m;
             res = m.toUpperCase();
             a.style.visibility= "hidden";
         }
