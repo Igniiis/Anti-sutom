@@ -128,7 +128,6 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
             motMax = element;
         }}
 
-
         //return true si tout est bon
         return true;
     });

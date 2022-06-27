@@ -7,6 +7,20 @@ b {
     font-size: 15px;
 }
 
+#motConceil {
+    text-align: center;
+}
+
+#voici {
+    font-size: medium;
+}
+
+#motConceilTxt {
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    color: aqua;
+}
+
 
 /* Create three unequal columns that floats next to each other */
 .column {
@@ -39,7 +53,7 @@ b {
   
 
 
-
+/* bouton pour chaque lettre */
 #lettreMot {
     text-align: center;
 }
@@ -49,18 +63,23 @@ b {
     margin: 0 0.5em;
 }
 
+#testS {
+    height: 105px;
+}
+
 .click-hover {
-    width: 160px;
-    font-size: 16px;
+    /* width: 80px; */
+    font-size: 26px;
     font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     cursor: pointer;
-    margin: 20px;
-    height: 55px;
+    margin: 10px;
+    height: 105px;
     text-align:center;
     border: none;
     background-size: 300% 100%;
-    border-radius: 50px;
+    border-radius: 120px;
     moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
@@ -90,10 +109,6 @@ b {
     box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
   }
 
-
-/* span{
-    color: black;
-} */
 
 
 #param {

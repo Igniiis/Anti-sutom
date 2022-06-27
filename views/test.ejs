@@ -25,7 +25,7 @@
         <ul id="lettreMot">
             <% for(let i=0;i<mot.length;i++){ %>
                 <li class="click-hover click" onclick="afficher(<%= i %>)">
-                    <a>
+                    <a class="testS">
                         <span>
                             <% if (mot[i]!="$") { %>
                                 <!-- ici mettre code de lorsque la lettre est sur -->
@@ -40,7 +40,11 @@
             <% } %> 
         </ul>
     
-
+        <div id="motConceil">
+            <a id="voici">mot le plus optimisé : </a>
+            <br>
+            <a id="motConceilTxt"><%=motConceil %> </a> 
+        </div>
 
         <div id="param">
             <div id="container_param">
@@ -67,10 +71,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div id="motConceil">
-        <%=motConceil %> 
     </div>
 
     <div class="row">
