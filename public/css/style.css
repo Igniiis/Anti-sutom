@@ -4,15 +4,16 @@
 
 h1 {
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     text-align: center;
     /* centré */
-    color: #BA181B;
+    color: #FF8838;
 }
 
 p {
     font-family: 'Josefin Sans', sans-serif;
     font-family: 'Poppins', sans-serif;
-    color: #B1A7A6;
+    color: #cecdcd;
 }
 
 #titre {
@@ -26,7 +27,7 @@ p {
     display: grid;
     place-items: center;
     margin-bottom: 10%;
-    border: 2px solid #660708;
+    border: 2px solid #FF8838;
 }
 
 #centrer {
@@ -85,7 +86,7 @@ p {
 
 
 body {
-    background-color: #0B090A;
+    background-color: rgb(43, 43, 43);
 }
 
 /* partie bouton stylé */

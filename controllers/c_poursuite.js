@@ -1,6 +1,5 @@
 let lLettres = "abcdefghijklmnopqrstuvwxyz";
 let motMax = "##erreur##";
-let tabMax = "";
 let voyelle = "aeiou";
 
 exports.affichageP1 = function (request,response) {
@@ -51,6 +50,7 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
 
     
     let alphabet = "";
+    let tabMax = "";
 
     let french = require('an-array-of-french-words').filter(function(element){
         if(element.includes('-')){ //enlève tout mot avec un "-" dedans
@@ -88,7 +88,6 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
             if(!element.includes(lettrePresente[j])){
                 return false;
             }else{
-
                 //partie pour vérifier si on a autant de fois le nombre de lettres dans le cas où
                 //il y a plusieurs fois les mêmes lettres
                 if(verif_multipleLettres){
@@ -96,7 +95,6 @@ function affichagePrecis(mot,lettrePresente,lettreImpossible) {
                         return false;
                     }
                 }
-
             }
             j++;
         }
@@ -155,7 +153,7 @@ exports.ajoutLettre = function (request,response) {
 function motOpti(listeMot) {
     console.log(listeMot);
     let voyelle = "aeiou";
-    let lettreUtile = "dflm";
+    let lettreUtile = "tr";
     let motMax = "";
     let tabMax = [];
     for (let i=0; i<listeMot.length; i++) {

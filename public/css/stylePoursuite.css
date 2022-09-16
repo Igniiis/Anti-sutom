@@ -1,10 +1,11 @@
 body {
-    background-color: yellow;
+    background-color: rgb(43, 43, 43);
 }
 
 b {
     padding: 5px;
     font-size: 15px;
+    transition: ease-out 0.2s;
 }
 
 #motConceil {
@@ -12,12 +13,14 @@ b {
 }
 
 #voici {
+    font-family: 'Nunito', sans-serif;
+    color: aliceblue;
     font-size: medium;
 }
 
 #motConceilTxt {
     font-size: xx-large;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: aqua;
 }
 
@@ -25,13 +28,17 @@ b {
 /* Create three unequal columns that floats next to each other */
 .column {
     border-color: #000;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(43, 43, 43);
 }
 
 .bordure{
     height: 100%;
     width: 20%;
+    background-color: rgb(43, 43, 43);
     /* border-style: solid; */
-    background-color: #aaa;
 }
   
 .left {
@@ -45,12 +52,88 @@ b {
 .middle {
     position: absolute;
     min-height: 70%;
-    border-radius: 10px;
-    background-color: #ff9a44;
     display: inline-block;
-    width: 60%;
+    width: 57%;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #ff8838ee;
+    /* background: linear-gradient(0deg, rgb(43, 43, 43), #ff8838ee 5% ),
+                linear-gradient(180deg, rgb(43, 43, 43), #ff8838ee 45% ),
+                linear-gradient(270deg, rgb(43, 43, 43), #ff8838ee 45% ),
+                linear-gradient(360deg, rgb(43, 43, 43), #ff8838ee 45% ); */
+    /* box-shadow: 1px 3px 3px 3px inset rgb(43, 43, 43); */
 }
   
+#listeLettrePresente {
+    list-style: none;
+    text-decoration: none;
+}
+
+  
+#listeLettrePresente a {
+    outline: none;
+    text-decoration: none;
+    color: #fe9d5c;
+    font-size: 20px;
+    padding: 2px 1px 0;
+    transition: ease-out 0.2s;
+  }
+
+#listeLettrePresente a:hover {
+    background-color: rgba(254, 157, 92, 0.6);
+    font-size: 22px;
+    border-radius: 2px;
+}
+
+#listeLettrePresente a:focus {
+    background-color: rgba(254, 157, 92, 0.6);
+    font-size: 22px;
+    border-radius: 2px;
+}
+
+#listeLettrePresente li::before {
+    content : "•";
+    color: #ff8838ee;
+}
+
+
+#listeLettreImpossible {
+    list-style: none;
+    text-decoration: none;
+}
+
+  
+#listeLettreImpossible a {
+    outline: none;
+    text-decoration: none;
+    color: #fe9d5c;
+    font-size: 20px;
+    padding: 2px 1px 0;
+    transition: ease-out 0.2s;
+  }
+
+
+#listeLettreImpossible li::before {
+    content : "•";
+    color: #ff8838ee;
+}
+
+#listeLettreImpossible a:focus {
+    background-color: rgba(254, 157, 92, 0.6);
+    font-size: 22px;
+    border-radius: 2px;
+}
+
+#listeLettreImpossible a:hover {
+    background-color: rgba(254, 157, 92, 0.6);
+    font-size: 22px;
+    border-radius: 2px;
+}
+
+#texte {
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 
 /* bouton pour chaque lettre */
@@ -63,84 +146,101 @@ b {
     margin: 0 0.5em;
 }
 
-#testS {
-    height: 105px;
+.testS {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    padding-top: 10px;
+    display: inline-block;
 }
 
 .click-hover {
-    /* width: 80px; */
     font-size: 26px;
-    font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
-    cursor: pointer;
-    margin: 10px;
-    height: 105px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
-    border-radius: 120px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-  }
-  
-  .click-hover:hover {
-    background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-  }
-  
-  .click-hover:focus {
-    outline: none;
-  }
-  
-  .click-hover.click {
-    background-image: linear-gradient(
-      to right,
-      #fc6076,
-      #ff9a44,
-      #ef9d43,
-      #e75516
-    );
-    box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
-  }
+    background-color: #aaa;
+    border-radius: 8px;
+    height: 60px;
+    box-shadow: inset 0 0 0 0 aqua;
+    transition: ease-out 0.2s;
+}
 
+.click-hover:hover {
+    background-color: aqua;
+}
+
+.click-hover:focus {
+    background-color: aqua;
+}
+
+
+span {
+    display: table;
+    margin: 0 auto;
+}
+
+
+
+#titre {
+    font-family: 'Poppins', sans-serif;
+    min-width: 205px;
+    padding: 15px 15px 15px 15px;
+    margin-top: 250px;
+    border-top: 15px;
+    background-color: #ff8838ee;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 0 aqua;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    transition: ease-out 0.3s;
+}
+
+#titre:hover {
+    font-size: 28px;
+    box-shadow: inset 205px 0 0 0 aqua;
+}
+
+#titre:focus {
+    font-size: 28px;
+    box-shadow: inset 205px 0 0 0 aqua;
+}
 
 
 #param {
-    margin-bottom: 5%;
-    margin-top: 5%;
+    margin-bottom: 2.5%;
+    margin-top: 1.5%;
     text-align: center;
 }
 
 #container_param {
+    display: grid;
     visibility: hidden;
-    background-color: blueviolet;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: aqua;
     border-radius: 15px;
-    border-color: black;
     margin-left: 35%;
     margin-right: 35%;
 }
 
 
+#lettrePossible_container {
+    grid-row: 1;
+    grid-column: 1;
+}
 
 #lettrePresente_select {
-    background-color: red;
+    background-color: #ff8838ee;
     border-radius: 10px;
     scrollbar-width: 100px;
-    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
 } 
 
 
 /* hide scrollbar but allow scrolling */
 #lettrePresente_select {
     /*-ms-overflow-style: none; /* for Internet Explorer, Edge */
-    /*scrollbar-width: none; /* for Firefox */
-    /* overflow-y: scroll;  */
+    scrollbar-width: none;
+    overflow-y: scroll;  
     scrollbar-width: 5px;
 }
 
@@ -162,6 +262,36 @@ select[multiple]{
 
 
 
+#alphabetComplet_select {
+    background-color: #ff8838ee;
+    border-radius: 10px;
+    scrollbar-width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+} 
+
+
+/* hide scrollbar but allow scrolling */
+#alphabetComplet_select {
+    scrollbar-width: none; 
+    overflow-y: scroll; 
+    scrollbar-width: 5px;
+}
+
+#alphabetComplet_select::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #aaa;
+    /*display: none; /* for Chrome, Safari, and Opera */
+}
+
+#alphabetComplet_select::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+
+
+
 
 /* à garder, lorsque l'on charge la page on doit pas voir la liste de choix */
 #lettrePresente_select {
@@ -173,6 +303,8 @@ select[multiple]{
 }
 
 #supprimerLettre {
+    grid-row: 1;
+    grid-column: 1;
     visibility: hidden;
 }
 
@@ -187,4 +319,17 @@ select[multiple]{
 
 #lettreImpossibleCache {
     visibility: hidden;
+}
+
+
+
+
+/* BOUTON POUR SUPPRIMER UNE LETTRE */
+.button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    background-color: #fe1a40a5;  
+    margin-left: 15px;
+    border-width: 1px;
+    border-radius: 8px;
 }

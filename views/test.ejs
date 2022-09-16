@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/stylePoursuite.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
     <title>anti-sutom</title>
 </head>
 <body>
 
     <!-- lien pour retourner à l'accueil -->
-    <a href="/">ANTI-SUTOM</a>
+    <a id="titre" href="/">ANTI-SUTOM</a>
 
     <!-- données présentes seulement pour le js -->
     <div id="motCache"><%= mot %></div>
@@ -26,7 +29,7 @@
             <% for(let i=0;i<mot.length;i++){ %>
                 <li class="click-hover click" onclick="afficher(<%= i %>)">
                     <a class="testS">
-                        <span>
+                        <span class="insideTest">
                             <% if (mot[i]!="$") { %>
                                 <!-- ici mettre code de lorsque la lettre est sur -->
                                 <%= mot[i] %>
@@ -51,23 +54,27 @@
                 <div id="texte">
                 </div>
 
-                <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
-                    <option value=""> </option>
-                    <% for( let i = 0; i < alphabet.length; i++ ) { %>
-                        <% if (!lettreImpossible.includes(alphabet[i])) { %>
-                            <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
+                
+                <div id="lettrePossible_container">
+                    <select name="lettrePossible" id="lettrePresente_select" onchange="changerLien(this.value)">
+                        <option value=""> </option>
+                        <% for( let i = 0; i < alphabet.length; i++ ) { %>
+                            <% if (!lettreImpossible.includes(alphabet[i])) { %>
+                                <option value="<%= alphabet[i] %>" href="/"><%= alphabet[i] %></option>                 
+                            <% } %>
                         <% } %>
-                    <% } %>
-                </select>
-
-                <select name="alphabetComplet" id="alphabetComplet_select" onchange="changerLien(this.value)">
-                    <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
-                        <option value="<%= "abcdefghijklmnopqrstuvwxyz"[i] %>" href="/"><%= "abcdefghijklmnopqrstuvwxyz"[i] %></option>                 
-                    <% } %>
-                </select>
+                    </select>
+                </div>
 
                 <div id="supprimerLettre">
-                    <button id="deleteButton">supprimer</button>
+                    
+                    <select name="alphabetComplet" id="alphabetComplet_select" onchange="changerLien(this.value)">
+                        <% for( let i = 0; i < "abcdefghijklmnopqrstuvwxyz".length; i++ ) { %>
+                            <option value="<%= "abcdefghijklmnopqrstuvwxyz"[i] %>" href="/"><%= "abcdefghijklmnopqrstuvwxyz"[i] %></option>                 
+                        <% } %>
+                    </select>
+
+                    <button id="deleteButton" class="button">supprimer</button>
                 </div>
             </div>
         </div>
@@ -96,7 +103,7 @@
                 <% } %>
                 </h3>
                 <% for( let i = 0; i < france.length; i++ ) { %>
-                    <b id="<%=i %>" class="listeMotsFrance" onclick="stanislasFail(<%=i %>)"><%=france[i]  %> :</b>
+                    <b id="<%=i %>" class="listeMotsFrance" onclick="stanislasFail(<%=i %>)"><%=france[i]  %> </b> |
                 <% } %>
             </div>
         </div>
@@ -153,7 +160,7 @@
     function enleverLettrePresente(id){ // fonction pour supprimer une des lettres de la liste des lettresPresentes mais pas utilisé
         lettrePresente = setCharAt(lettrePresente,id,'');
         if(lettreImpossible){
-            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible + "_" + x;                
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible ;//+ "_" + x;                
         }else{
             window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
         }
@@ -164,7 +171,7 @@
         let nMot = setCharAt(mot,nb,'$');
         
         if(lettreImpossible){
-            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible + "_" + x;                
+            window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente + "/" + lettreImpossible ;//+ "_" + x;                
         }else{
             window.location.href = "/poursuite/"+nMot+"/"+ lettrePresente;
         }
